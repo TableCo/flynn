@@ -82,3 +82,19 @@ required = [
 [[constraint]]
   branch = "master"
   name = "github.com/jvatic/asset-matrix-go"
+
+[[constraint]]
+  name = "github.com/golang/protobuf"
+  revision = "1d3f30b51784bec5aad268e59fd3c2fc1c2fe73f"
+
+[[constraint]]
+  branch = "master"
+  name = "google.golang.org/genproto"
+
+[[constraint]]
+  branch = "master"
+  name = "google.golang.org/grpc"
+
+[[constraint]]
+  name = "github.com/soheilhy/cmux"
+  version = "0.1.4"
