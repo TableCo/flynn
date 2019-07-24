@@ -13,7 +13,6 @@ import (
 	"strings"
 	"sync"
 
-	controller "github.com/flynn/flynn/controller/client"
 	"github.com/flynn/flynn/controller/data"
 	"github.com/flynn/flynn/controller/name"
 	"github.com/flynn/flynn/controller/schema"
@@ -38,7 +37,7 @@ import (
 
 var logger = log15.New("component", "controller")
 
-var ErrNotFound = controller.ErrNotFound
+var ErrNotFound = ct.ErrNotFound
 var ErrShutdown = errors.New("controller: shutting down")
 
 var schemaRoot = "/etc/flynn-controller/jsonschema"
