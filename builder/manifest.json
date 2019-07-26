@@ -48,6 +48,22 @@
       }]
     },
     {
+      "id": "protoc",
+      "base": "go",
+      "layers": [{
+        "script": "builder/img/protoc.sh",
+        "limits": { "temp_disk": "1G" }
+      }]
+    },
+    {
+      "id": "grpc-go",
+      "base": "protoc",
+      "layers": [{
+        "script": "builder/img/grpc-go.sh",
+        "limits": { "temp_disk": "1G" }
+      }]
+    },
+    {
       "id": "builder",
       "base": "go",
       "layers": [{
@@ -162,6 +178,30 @@
       "entrypoint": {
         "args": [
           "/bin/start-flynn-controller"
+        ]
+      }
+    },
+    {
+      "id": "controller-grpc",
+      "base": "busybox",
+      "layers": [{
+        "gobuild": {
+          "controller-grpc": "/bin/flynn-controller-grpc"
+        },
+        "inputs": [
+          "schema/*.json",
+          "schema/controller/*.json",
+          "schema/router/*.json"
+        ],
+        "run": [
+          "mkdir -p /etc/flynn-controller",
+          "cp -r schema /etc/flynn-controller/jsonschema"
+        ],
+        "limits": { "temp_disk": "1G" }
+      }],
+      "entrypoint": {
+        "args": [
+          "/bin/flynn-controller-grpc"
         ]
       }
     },
